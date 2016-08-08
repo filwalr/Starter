@@ -5,11 +5,14 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-app.controller('LocationCtrl', function($scope, $cordovaGeolocation){
+app.controller('LocationCtrl', function($scope, $cordovaGeolocation, @ionicPlatform){
 
 module.controller('GeoCtrl', function($cordovaGeolocation) {
 
-  var posOptions = {timeout: 10000, enableHighAccuracy: false};
+  $ionicPlatform.ready(function (){
+
+
+  var posOptions = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
     .then(function(position) {
@@ -18,7 +21,7 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
       console.log('getCurrentPosition error:' + angluar.toJson(err));
       // error
     });
-
+  })
 
 })
 

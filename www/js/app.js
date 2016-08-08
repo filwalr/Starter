@@ -5,27 +5,24 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
 
-app.controller('LocationCtrl', function($scope, $cordovaGeolocation, @ionicPlatform){
+app.controller('LocationCtrl', function($scope, $cordovaGeolocation, $ionicPlatform){
 
 module.controller('GeoCtrl', function($cordovaGeolocation) {
 
-  $ionicPlatform.ready(function (){
-
-
+  $ionicPlatform.ready(function () {
   var posOptions = {timeout: 10000, enableHighAccuracy: true};
-  $cordovaGeolocation
-    .getCurrentPosition(posOptions)
+  $cordovaGeolocation.getCurrentPosition(posOptions)
     .then(function(position) {
       $scope.coords = position.coords;
     }, function(err) {
       console.log('getCurrentPosition error:' + angluar.toJson(err));
       // error
     });
-  })
+  });
 
-})
+});
 
-.run(function($ionicPlatform) {
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -41,4 +38,4 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
       StatusBar.styleDefault();
     }
   });
-})
+});

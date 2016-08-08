@@ -7,11 +7,21 @@ var app = angular.module('starter', ['ionic','ngCordova']);
 
 app.controller('LocationCtrl', function($scope, $cordovaGeolocation, $ionicPlatform){
 
+function showmap(coords) {
+  var mapOptions = {
+    center: {lat: coord.latitude, lng: coords.longitutde},
+    zoom: 8
+  };
+  var map = new google.maps.Map(document.getElementByID('map-canvas'),
+    mapOptions);
+}
+
   $ionicPlatform.ready(function () {
   var posOptions = {timeout: 10000, enableHighAccuracy: true};
   $cordovaGeolocation.getCurrentPosition(posOptions)
     .then(function(position) {
       $scope.coords = position.coords;
+      showMap(position.coords);
     }, function(err) {
       console.log('getCurrentPosition error:' + angluar.toJson(err));
       // error

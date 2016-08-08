@@ -12,14 +12,14 @@ module.controller('GeoCtrl', function($cordovaGeolocation) {
   var posOptions = {timeout: 10000, enableHighAccuracy: false};
   $cordovaGeolocation
     .getCurrentPosition(posOptions)
-    .then(function (position) {
-      var lat  = position.coords.latitude
-      var long = position.coords.longitude
+    .then(function(position) {
+      $scope.coords = position.coords;
     }, function(err) {
+      console.log('getCurrentPosition error:' + angluar.toJson(err));
       // error
     });
 
-  
+
 })
 
 .run(function($ionicPlatform) {
